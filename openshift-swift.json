@@ -11,7 +11,7 @@
         "annotations": {
           "description": "Build and run Swift applications",
           "iconClass": "fa fa-apple",
-          "tags": "builder,swift",
+          "tags": "builder,swift,sygnaler",
           "supports": "swift:3.0,swift",
           "version": "3.0"
         },
