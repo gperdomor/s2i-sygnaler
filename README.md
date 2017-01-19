@@ -11,7 +11,7 @@ This image expects that you have a `run.sh` file in the root directory of your r
 This image is available on DockerHub. To pull it, run:
 
 ```
-docker pull computersciencehouse/swift-ubuntu16.04
+docker pull gperdomor/s2i-sygnaler
 ```
 
 To build the image from scratch, run:
@@ -33,10 +33,10 @@ docker run -p 8080:8080 my-swift-app
 
 ## OpenShift Usage
 
-To use this image within your OpenShift cluster, use the included `openshift-swift.json` to create the ImageStream within your project. For cluster administrators, you can make this image available to all users by running the following command on a master or logged in as a user with administrative privileges on the `openshift` namespace:
+To use this image within your OpenShift cluster, use the included `openshift-sygnaler.json` to create the ImageStream within your project. For cluster administrators, you can make this image available to all users by running the following command on a master or logged in as a user with administrative privileges on the `openshift` namespace:
 
 ```
-oc create -f openshift-swift.json -n openshift
+oc create -f openshift-sygnaler.json -n openshift
 ```
 
 ## Test

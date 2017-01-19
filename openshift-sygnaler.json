@@ -2,14 +2,14 @@
   "kind": "ImageStream",
   "apiVersion": "v1",
   "metadata": {
-    "name": "swift"
+    "name": "sygnaler"
   },
   "spec": {
     "tags": [
       {
         "name": "latest",
         "annotations": {
-          "description": "Build and run Swift applications",
+          "description": "Build and run Sygnaler push gateway",
           "iconClass": "fa fa-apple",
           "tags": "builder,swift,sygnaler",
           "supports": "swift:3.0,swift",
@@ -17,7 +17,7 @@
         },
         "from": {
           "kind": "DockerImage",
-          "name": "computersciencehouse/swift-ubuntu16.04:latest"
+          "name": "gperdomor/s2i-sygnaler:latest"
         }
       }
     ]
