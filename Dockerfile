@@ -24,6 +24,33 @@ export PATH=/opt/swift/swift-3.0/usr/bin:$PATH
 # Install MySQLProvider deps
 RUN apt-get -yq install libmysqlclient20 libmysqlclient-dev
 
+# Installing Curl and HTTP2 Support
+RUN apt-get -y -qq build-dep curl && \
+    apt-get -y -qq install git g++ make binutils autoconf automake autotools-dev \
+    libtool pkg-config zlib1g-dev libcunit1-dev libssl-dev libxml2-dev libev-dev \
+    libevent-dev libjansson-dev libjemalloc-dev cython python3-dev python-setuptools
+
+RUN cd ~ && \
+    git clone --quiet https://github.com/nghttp2/nghttp2.git && \
+    cd nghttp2 && \
+    git submodule update --init && \
+    autoreconf -i && \
+    automake && \
+    autoconf && \
+    ./configure && \
+    make && \
+    make install
+
+RUN cd ~ && \
+    wget -q http://curl.haxx.se/download/curl-7.52.1.tar.bz2 && \
+    tar -xjf curl-7.52.1.tar.bz2 && \
+    cd curl-7.52.1 && \
+    ./configure --with-nghttp2=/usr/local --with-ssl && \
+    make && \
+    make install && \
+    ldconfig && \
+    ln -fs /usr/local/bin/curl /usr/bin/curl
+
 # Clean APT cache
 RUN apt-get -yq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
